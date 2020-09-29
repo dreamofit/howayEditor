@@ -36,6 +36,10 @@ const howayFormatBlock =(param)=> {
     return document.execCommand('formatBlock',false,param);
 }
 
+const howayStrikeThrough =()=>{
+    return document.execCommand('strikeThrough',false);
+}
+
 //直接执行命令
 const howayCommand = (aCommandName, aShowDefaultUI, aValueArgument) => {
     return document.execCommand(aCommandName, aShowDefaultUI, aValueArgument)
@@ -51,7 +55,8 @@ const Tool = {
     howayFontName,
     howayUndo,
     howayRedo,
-    howayFormatBlock
+    howayFormatBlock,
+    howayStrikeThrough
 }
 
 export {

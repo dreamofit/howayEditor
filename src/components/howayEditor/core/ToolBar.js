@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Tool } from '../../util/Tool.js'
-import BtnBlod from '../buttons/BtnBlod.js';
+import BtnCommon from '../buttons/BtnCommon.js';
 
 class ToolBar extends Component {
     constructor(props) {
@@ -11,18 +11,47 @@ class ToolBar extends Component {
     }
 
     render() {
-        
+
         const { btnBlodBorder } = this.state;
-        const { buttonCommonStyle, buttonFontSizeStyle,focusElements } = this.props;
-        
+        const { iconStriket,iconBlod,iconItalic,iconUderline,toolBarStyle,buttonCommonStyle, buttonFontSizeStyle, focusElements, focus } = this.props;
         return (
-            <div>
-                <BtnBlod styles={buttonCommonStyle} focusElements={focusElements} />
-                <button style={buttonCommonStyle} onClick={Tool.howayItalic}>I</button>
-                <button style={buttonCommonStyle} onClick={Tool.howayUnderline}>U</button>
-                <button style={buttonCommonStyle} onClick={Tool.howayUnderline}>U</button>
-                <select style={buttonFontSizeStyle} defaultValue={3} 
-                onChange={e => Tool.howayFormatBlock(e.target.value)}>
+            <div style={toolBarStyle}>
+                <BtnCommon
+                    focus={focus}
+                    howayMethod={Tool.howayBold}
+                    elem={'B'}
+                    icon={iconBlod===undefined?undefined:iconBlod}
+                    tips={'粗体(CTRL+B)'}
+                    styles={buttonCommonStyle}
+                    focusElements={focusElements} />
+                <BtnCommon
+                    focus={focus}
+                    howayMethod={Tool.howayItalic}
+                    icon={iconItalic===undefined?undefined:iconItalic}
+                    elem={'I'}
+                    tips={'斜体(CTRL+I)'}
+                    styles={buttonCommonStyle}
+                    focusElements={focusElements} />
+                <BtnCommon
+                    focus={focus}
+                    howayMethod={Tool.howayUnderline}
+                    icon={iconUderline===undefined?undefined:iconUderline}
+                    elem={'U'}
+                    tips={'下划线(CTRL+U)'}
+                    styles={buttonCommonStyle}
+                    focusElements={focusElements} />
+                <BtnCommon
+                    focus={focus}
+                    howayMethod={Tool.howayStrikeThrough}
+                    icon={iconStriket===undefined?undefined:iconStriket}
+                    elem={'STRIKE'}
+                    tips={'删除线'}
+                    styles={buttonCommonStyle}
+                    focusElements={focusElements} />
+
+
+                <select style={buttonFontSizeStyle} defaultValue={3}
+                    onChange={e => Tool.howayFormatBlock(e.target.value)}>
                     <option value="H1">H1</option>
                     <option value="H2">H2</option>
                     <option value="H3">H3</option>
@@ -70,8 +99,14 @@ class ToolBar extends Component {
 }
 
 ToolBar.defaultProps = {
+    toolBarStyle:{
+        background:"#E8EAF6",
+        height:"auto",
+        width:"auto",
+        padding:10
+    },
     buttonCommonStyle: {
-        width: 26, height: 26, background: "none", cursor: "pointer", margin: 2
+        width: 26, height: 26, background: "none", cursor: "pointer", margin: 2,borderColor:'#EA80FC'
     },
     buttonFontSizeStyle: {
         width: "auto", height: 26, background: "none", cursor: "pointer", margin: 2

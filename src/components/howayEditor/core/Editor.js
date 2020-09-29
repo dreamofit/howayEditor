@@ -33,6 +33,7 @@ Editor.defaultProps = {
     EditorStyles:{
         minHeight: 100,
         maxHeight:500,
+        height:500,
         overflowY:"scroll",
         padding: 6, 
         borderWidth: "0.1px", 

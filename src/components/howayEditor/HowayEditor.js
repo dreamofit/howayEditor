@@ -12,13 +12,14 @@ class HowayEditor extends Component {
             focus: false,
             focusElements: []
         }
-        
+
     }
 
-    componentDidMount =()=>{
+    componentDidMount = () => {
+        //监听光标改变事件
         document.addEventListener('selectionchange', () => {
             let focus = false;
-            if(this.editorRef!==undefined){
+            if (this.editorRef !== undefined) {
                 focus = this.editorRef.state.focus;
             }
             if (focus) {
@@ -32,16 +33,16 @@ class HowayEditor extends Component {
         this.setState({ focus: focus })
     }
 
-    componentDidUpdate=()=>{
-        console.log(this.state.focusElements);
+    componentDidUpdate = () => {
+        //console.log(this.state.focusElements);
     }
 
     forEachparentNode = (node) => {
         let focusElements = [];
-        while("howay-edit" !== node.className){
+        while ("howay-edit" !== node.className) {
             let name = node.parentElement.nodeName;
             let value = "";
-            if("DIV"!==name){
+            if ("DIV" !== name) {
                 if ("FONT" === name) {
                     if (node.parentElement.face !== "") {
                         value = node.parentElement.face;
@@ -98,7 +99,8 @@ class HowayEditor extends Component {
 
         return (
             <div style={styles}>
-                <ToolBar focusElements={focusElements} />
+                <ToolBar {...this.props} focusElements={focusElements}
+                    focus={this.editorRef === undefined ? false : this.editorRef.state.focus} />
                 <Editor
                     ref={e => this.editorRef = e}
                     onChange={this.handleChange}
