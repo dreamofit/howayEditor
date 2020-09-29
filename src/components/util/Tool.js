@@ -23,7 +23,18 @@ const howayInsertHtml = (param) => {
 const howayForeColor = (param) => {
     return document.execCommand('foreColor', false, param);
 }
-
+const howayFontName = (param) => {
+    return document.execCommand('fontName',false,param);
+}
+const howayUndo = () => {
+    return document.execCommand('undo', false);
+}
+const howayRedo = () => {
+    return document.execCommand('redo', false)
+}
+const howayFormatBlock =(param)=> {
+    return document.execCommand('formatBlock',false,param);
+}
 
 //直接执行命令
 const howayCommand = (aCommandName, aShowDefaultUI, aValueArgument) => {
@@ -37,6 +48,10 @@ const Tool = {
     howayFontSize,
     howayInsertHtml,
     howayForeColor,
+    howayFontName,
+    howayUndo,
+    howayRedo,
+    howayFormatBlock
 }
 
 export {

@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
-import HowayEditor from './components/howayEditor/HowayEditor';
 import Test from './components/howayEditor/Test';
 
 ReactDOM.render(

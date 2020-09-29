@@ -11,7 +11,7 @@ class Test extends Component {
     render() {
         return (
             <div>
-                <HowayEditor onChange={e=>console.log(e)} />
+                <HowayEditor />
             </div>
         );
     }
