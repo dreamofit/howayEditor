@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Editor from './core/Editor';
 import ToolBar from './core/ToolBar';
+import ImgEdit from './img/ImgEdit';
 
 
 class HowayEditor extends Component {
@@ -10,7 +11,11 @@ class HowayEditor extends Component {
         this.state = {
             text: "",
             focus: false,
-            focusElements: []
+            focusElements: [],
+            isImgEdit:false,
+            open:false,
+            X:0,
+            Y:0
         }
 
     }
@@ -22,11 +27,32 @@ class HowayEditor extends Component {
             if (this.editorRef !== undefined) {
                 focus = this.editorRef.state.focus;
             }
-            if (focus) {
+            if (focus) {  //焦点在编辑器内
                 let selection = window.getSelection();
                 this.forEachparentNode(selection.anchorNode);
+                if(selection.type==='Range'){ //是否选中
+                    //bug:只根据了起点和终点的信息，并不准确，需要修改
+                    let range = selection.anchorOffset-selection.focusOffset;
+                    if(selection.anchorNode.firstElementChild===undefined||selection.anchorNode.firstElementChild===null){
+                        this.setState({isImgEdit:false});
+                        return;
+                    }else if((range===1||range===-1)&&selection.anchorNode.firstElementChild.localName==='img'){
+                        this.setState({isImgEdit:true});
+                        return;
+                    }
+                }
+            }
+            this.setState({isImgEdit:false}); //图片编辑为false
+        });
+        document.getElementById("howay-editor").addEventListener('click',(e)=>{
+            this.setState({open:false,X:e.clientX,Y:e.clientY}); 
+        });
+        document.getElementById("howay-editor").addEventListener('dblclick',(e)=>{
+            if(e.target.tagName==='IMG'&&this.state.isImgEdit){
+                this.setState({open:true});
             }
         })
+        
     }
 
     focusChange = (focus) => {
@@ -60,30 +86,6 @@ class HowayEditor extends Component {
         this.setState({ focusElements: focusElements });
     }
 
-    // forEachparentNode = (node) => {
-    //     let { focusElements } = this.state;
-    //     if ("howay-edit" === node.className) {
-    //         return;
-    //     } else {
-    //         this.forEachparentNode(node.parentNode);
-    //         if ("DIV" !== node.parentElement.nodeName) {
-    //             let name = node.parentElement.nodeName;
-    //             let value = "";
-    //             if ("FONT" === name) {
-    //                 if (node.parentElement.face !== "") {
-    //                     value = node.parentElement.face;
-    //                 } else if (node.parentElement.color !== "") {
-    //                     value = node.parentElement.color;
-    //                 } else if (node.parentElement.size !== "") {
-    //                     value = node.parentElement.size;
-    //                 }
-    //             }
-    //             let obj = { name: name, value: value };
-    //             focusElements.push(obj);
-    //         }
-    //         this.setState({ focusElements: focusElements })
-    //     }
-    // }
 
     handleChange = (e) => {
         if (this.props.onChange !== undefined) {
@@ -94,17 +96,18 @@ class HowayEditor extends Component {
 
 
     render() {
-        const { styles } = this.props;
-        const { focusElements } = this.state;
+        const { styles,upload } = this.props;
+        const { focusElements,open,X,Y } = this.state;
 
         return (
-            <div style={styles}>
-                <ToolBar {...this.props} focusElements={focusElements}
+            <div id='howayEditor' style={styles}>
+                <ToolBar {...this.props} focusElements={focusElements} upload={upload}
                     focus={this.editorRef === undefined ? false : this.editorRef.state.focus} />
-                <Editor
+                <Editor 
                     ref={e => this.editorRef = e}
                     onChange={this.handleChange}
                 />
+                <ImgEdit upload={upload} id="img-upload-two" open={open} X={X} Y={Y} />
             </div>
         );
     }

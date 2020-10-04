@@ -6,19 +6,19 @@ class BtnCommon extends Component {
         super(props);
         this.state = {
             borderWidth: 0,
-            backgroudColor: '#FFF',
-            active: true,
+            backgroudColor: '#E8EAF6',
+            active: false,
             display: 'none'
         }
     }
 
     //btn未激活
     un_active = () => {
-        this.setState({ borderWidth: 0, backgroudColor: '#FFF', active: false });
+        this.setState({ borderWidth: 0, backgroudColor: '#E8EAF6', active: false });
     }
     //btn已激活
     _active = () => {
-        this.setState({ borderWidth: 1, backgroudColor: '#E0E0E0', active: false });
+        this.setState({ borderWidth: 1, backgroudColor: '#E0E0E0', active: true });
     }
 
     handleClick = () => {
