@@ -117,7 +117,8 @@ HowayEditor.defaultProps = {
     styles: {
         width: "60%",
         height: "100%",
-        marginLeft: '20%'
+        marginLeft: '20%',
+        float:"none"
     }
 }
 export default HowayEditor;

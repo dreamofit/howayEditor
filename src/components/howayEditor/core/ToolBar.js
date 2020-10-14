@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Tool } from '../../util/Tool.js'
 import BtnCommon from '../buttons/BtnCommon.js';
 import BtnImg from '../buttons/BtnImg.js';
+import BtnSelect from '../buttons/BtnSelect.js';
 
 class ToolBar extends Component {
     constructor(props) {
@@ -19,6 +20,12 @@ class ToolBar extends Component {
             iconItalic,
             iconUderline,
             iconImg,
+            iconCenter,
+            iconLeft,
+            iconRight,
+            iconFull,
+            iconUndo,
+            iconRedo,
             toolBarStyles,
             buttonCommonStyles,
             buttonFontSizeStyles,
@@ -60,37 +67,67 @@ class ToolBar extends Component {
                     tips={'删除线'}
                     styles={buttonCommonStyles}
                     focusElements={focusElements} />
+                <BtnCommon
+                    focus={focus}
+                    howayMethod={Tool.howayJustifyCenter}
+                    icon={iconCenter === undefined ? undefined : iconCenter}
+                    elem={'center'}
+                    tips={'居中对齐'}
+                    styles={buttonCommonStyles}
+                    focusElements={focusElements} />
+                <BtnCommon
+                    focus={focus}
+                    howayMethod={Tool.howayJustifyLeft}
+                    icon={iconLeft === undefined ? undefined : iconLeft}
+                    elem={'left'}
+                    tips={'左对齐'}
+                    styles={buttonCommonStyles}
+                    focusElements={focusElements} />
+                <BtnCommon
+                    focus={focus}
+                    howayMethod={Tool.howayJustifyRight}
+                    icon={iconRight === undefined ? undefined : iconRight}
+                    elem={'right'}
+                    tips={'右对齐'}
+                    styles={buttonCommonStyles}
+                    focusElements={focusElements} />
+                <BtnCommon
+                    focus={focus}
+                    howayMethod={Tool.howayJustifyFull}
+                    icon={iconFull === undefined ? undefined : iconFull}
+                    elem={'full'}
+                    tips={'两端对齐'}
+                    styles={buttonCommonStyles}
+                    focusElements={focusElements} />
 
-
-                <select style={buttonFontSizeStyles} defaultValue={3}
-                    onChange={e => Tool.howayFormatBlock(e.target.value)}>
-                    <option value="H1">H1</option>
-                    <option value="H2">H2</option>
-                    <option value="H3">H3</option>
-                    <option value="H4">H4</option>
-                    <option value="H5">H5</option>
-                    <option value="H6">H6</option>
-                    <option value="P">P</option>
-                </select>
-                <select style={buttonFontSizeStyles} defaultValue={3} onChange={e => Tool.howayFontSize(e.target.value)}>
-                    <option value="7">7</option>
-                    <option value="6">6</option>
-                    <option value="5">5</option>
-                    <option value="4">4</option>
-                    <option value="3">3</option>
-                    <option value="2">2</option>
-                    <option value="1">1</option>
-                </select>
-                <select style={buttonFontSizeStyles} defaultValue={3}
-                    onChange={e => Tool.howayFontName(e.target.value)}>
-                    <option value="宋体">宋体</option>
-                    <option value="新宋体">新宋体</option>
-                    <option value="黑体">黑体</option>
-                    <option value="微软雅黑">微软雅黑</option>
-                    <option value="Arial">Arial</option>
-                    <option value="Arial Black">Arial Black</option>
-                    <option value="Times New Roman">Times New Roman</option>
-                </select>
+                <BtnSelect styles={buttonFontSizeStyles} 
+                    howayMethod={Tool.howayFormatBlock}
+                    focusElements={focusElements}
+                    tips={'段落'}
+                    _key={'block'}
+                    options={[{value:"H1"},
+                    {value:"H2"},{value:"H3"},
+                    {value:"H4"},{value:"H5"},
+                    {value:"H6"},{value:"P"}]} />
+                
+                <BtnSelect styles={buttonFontSizeStyles} 
+                    howayMethod={Tool.howayFontSize}
+                    focusElements={focusElements}
+                    tips={'文字大小'}
+                    _key={'fontsize'}
+                    options={[{value:"1"},
+                    {value:"2"},{value:"3"},
+                    {value:"4"},{value:"5"},
+                    {value:"6"},{value:"7"}]} />
+                <BtnSelect styles={buttonFontSizeStyles} 
+                    howayMethod={Tool.howayFontName}
+                    focusElements={focusElements}
+                    tips={'字体'}
+                    _key={'fontname'}
+                    options={[{value:"宋体"},
+                    {value:"新宋体"},{value:"黑体"},
+                    {value:"微软雅黑"},{value:"Arial"},
+                    {value:"Arial Black"},{value:"imes New Roman"}]} />
                 {/* <button onClick={() => {
                     let src = 'http://5b0988e595225.cdn.sohucs.com/images/20190822/dd8d3f80894d48aebd8ae0a64a285d41.jpeg'
                     document.execCommand('inserthtml', false, `<img src=${src} width=${100} >`)
@@ -99,15 +136,34 @@ class ToolBar extends Component {
                     upload={upload}
                     icon={iconImg === undefined ? undefined : iconImg}
                     styles={buttonCommonStyles} />
-                <button onClick={Tool.howayUndo}>撤销</button>
-                <button onClick={Tool.howayRedo}>回退</button>
+                <BtnCommon
+                    focus={focus}
+                    howayMethod={Tool.howayUndo}
+                    icon={iconUndo === undefined ? undefined : iconUndo}
+                    elem={'undo'}
+                    tips={'撤销(CTRL+Z)'}
+                    styles={buttonCommonStyles}
+                    focusElements={focusElements} />
+                <BtnCommon
+                    focus={focus}
+                    howayMethod={Tool.howayRedo}
+                    icon={iconRedo === undefined ? undefined : iconRedo}
+                    elem={'redo'}
+                    tips={'回退(CTRL+Y)'}
+                    styles={buttonCommonStyles}
+                    focusElements={focusElements} />
+                <BtnSelect styles={buttonFontSizeStyles} 
+                    howayMethod={Tool.howayForeColor}
+                    focusElements={focusElements}
+                    tips={'文字颜色'}
+                    _key={'forecolor'}
+                    options={[{value:"red",title:"红"},
+                    {value:"black",title:"黑"},
+                    {value:"green",title:"绿"},{value:"blue",title:"蓝"},
+                    {value:"yellow",title:"黄"}]} />
                 <select style={buttonFontSizeStyles} defaultValue={'black'}
                     onChange={e => Tool.howayForeColor(e.target.value)}>
-                    <option value="red">红</option>
-                    <option value="black">黑</option>
-                    <option value="blue">蓝</option>
-                    <option value="green">绿</option>
-                    <option value="yellow">黄</option>
+                   
                 </select>
             </div>
         );

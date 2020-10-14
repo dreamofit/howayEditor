@@ -19,6 +19,21 @@ const howayInsertHtml = (param) => {
     return document.execCommand('inserthtml', false, param);
 }
 
+const howayJustifyCenter = ()=>{
+    return document.execCommand('justifyCenter',false);
+}
+
+const howayJustifyLeft =()=>{
+    return document.execCommand('justifyLeft',false);
+}
+const howayJustifyRight =()=>{
+    return document.execCommand('justifyRight',false);
+}
+
+const howayJustifyFull=()=>{
+    return document.execCommand('justifyFull',false);
+}
+
 //修改字体颜色
 const howayForeColor = (param) => {
     return document.execCommand('foreColor', false, param);
@@ -56,7 +71,11 @@ const Tool = {
     howayUndo,
     howayRedo,
     howayFormatBlock,
-    howayStrikeThrough
+    howayStrikeThrough,
+    howayJustifyCenter,
+    howayJustifyLeft,
+    howayJustifyRight,
+    howayJustifyFull
 }
 
 export {
