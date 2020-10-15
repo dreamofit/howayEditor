@@ -38,6 +38,9 @@ const howayJustifyFull=()=>{
 const howayForeColor = (param) => {
     return document.execCommand('foreColor', false, param);
 }
+const howayHiliteColor =(param)=>{
+    return document.execCommand('hiliteColor', false, param);
+}
 const howayFontName = (param) => {
     return document.execCommand('fontName',false,param);
 }
@@ -75,7 +78,8 @@ const Tool = {
     howayJustifyCenter,
     howayJustifyLeft,
     howayJustifyRight,
-    howayJustifyFull
+    howayJustifyFull,
+    howayHiliteColor
 }
 
 export {

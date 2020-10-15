@@ -67,18 +67,27 @@ class HowayEditor extends Component {
         let focusElements = [];
         while ("howay-edit" !== node.className) {
             let name = node.parentElement.nodeName;
-            let value = "";
+            //console.log(node.parentElement.nodeName);
+            let face = "";
+            let color = "";
+            let size = "";
+            let style = "";
             if ("DIV" !== name) {
                 if ("FONT" === name) {
                     if (node.parentElement.face !== "") {
-                        value = node.parentElement.face;
-                    } else if (node.parentElement.color !== "") {
-                        value = node.parentElement.color;
-                    } else if (node.parentElement.size !== "") {
-                        value = node.parentElement.size;
+                        face = node.parentElement.face;
+                    } 
+                    if (node.parentElement.color !== "") {
+                        color = node.parentElement.color;
+                    } 
+                    if (node.parentElement.size !== "") {
+                        size = node.parentElement.size;
                     }
                 }
-                let obj = { name: name, value: value };
+                if("SPAN" === name){
+                    console.log(node.parentElement.style);
+                }
+                let obj = { name: name, face: face,color:color,size:size,style:style };
                 focusElements.push(obj);
             }
             node = node.parentNode;

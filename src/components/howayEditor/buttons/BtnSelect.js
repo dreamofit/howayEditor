@@ -7,12 +7,22 @@ class BtnSelect extends Component {
             selected: "",
             display: "none"
         }
+        this.time = setTimeout(() => {
+            document.addEventListener('selectionchange', () => {
+                this.isInFocusElements();
+            })
+        }, 1200);
     }
     isInFocusElements = () => {
-        const { focusElements, options } = this.props;
+        const { focusElements, options,elem } = this.props;
+        let value = "name";
+        if(elem!==undefined){
+            value = elem;
+        }
         for (let i in focusElements) {
             for (let j = 0; j < options.length; j++) {
-                if (options[j].value === focusElements[i].name) {
+                //console.log(focusElements[i]);
+                if (options[j].value === focusElements[i][value]) {
                     this.setState({ selected: options[j].value });
                     return;
                 }
@@ -25,9 +35,9 @@ class BtnSelect extends Component {
         const { howayMethod } = this.props;
         howayMethod(e.target.value);
         this.setState({ selected: e.target.value });
-        document.addEventListener('selectionchange', () => {
-            this.isInFocusElements();
-        })
+        // document.addEventListener('selectionchange', () => {
+        //     this.isInFocusElements();
+        // })
     }
 
     handleMouseOver = () => {
@@ -46,7 +56,7 @@ class BtnSelect extends Component {
         const { styles, tips, options,_key } = this.props;
         let left =  document.getElementById('select'+_key)===null?0:document.getElementById('select'+_key).offsetWidth;
        
-        console.log(_key);
+        //console.log(_key);
         return (
             <div id={"select"+_key} style={{ float: "left",width:"auto" }}>
                 <select  style={styles} value={selected}
@@ -57,7 +67,7 @@ class BtnSelect extends Component {
                     <option value="" disabled>---</option>
                     {
                         options.map(option => {
-                            return <option value={option.value}>{option.title === undefined ? option.value : option.title}</option>
+                            return <option key={"select_"+_key+option.value} value={option.value}>{option.title === undefined ? option.value : option.title}</option>
                         })
                     }
                 </select>

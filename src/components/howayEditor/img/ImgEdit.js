@@ -82,9 +82,9 @@ class ImgEdit extends Component {
                     <div className='img-edit' style={{ float: "right", height: 10 }}>
                         <div className='img-edit' style={{ display: custDisplay }}>
                             <label className='img-edit' style={{ marginLeft: 10 }}>width:</label>
-                            <input className='img-edit' onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')" onChange={e => this.setState({ width: e.target.value })} style={{ width: 40, marginLeft: 4 }} />
+                            <input className='img-edit'  onChange={e => this.setState({ width: e.target.value })} style={{ width: 40, marginLeft: 4 }} />
                             <label className='img-edit' style={{ marginLeft: 10 }}>height:</label>
-                            <input className='img-edit' onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')" onChange={e => this.setState({ height: e.target.value })} style={{ width: 40, marginLeft: 4 }} />
+                            <input className='img-edit'  onChange={e => this.setState({ height: e.target.value })} style={{ width: 40, marginLeft: 4 }} />
                         </div>
                     </div>
                 </div>

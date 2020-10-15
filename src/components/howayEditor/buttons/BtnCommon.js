@@ -8,8 +8,14 @@ class BtnCommon extends Component {
             borderWidth: 0,
             backgroudColor: '#E8EAF6',
             active: false,
-            display: 'none'
+            display: 'none',
+            disabled:false
         }
+        this.time = setTimeout(() => {
+            document.addEventListener('selectionchange', () => {
+                this.isInFocusElements();
+            })
+        }, 1200);
     }
 
     //btn未激活
@@ -20,18 +26,35 @@ class BtnCommon extends Component {
     _active = () => {
         this.setState({ borderWidth: 1, backgroudColor: '#E0E0E0', active: true });
     }
+    componentDidMount=()=>{
+        document.addEventListener('selectionchange', () => {
+            this.isInFocusElements();
+            this.setState({disabled:false});
+        })
+    }
 
     handleClick = () => {
-        this.props.howayMethod(); //传方法过来
+        let rs = this.props.howayMethod(); //传方法过来
+        //console.log("rs:",rs);
+        if(rs){ //使用按钮
+            this.setState({disabled:false});
+        }else{//禁用按钮
+            this.setState({disabled:true});
+        }
+        if(this.props.noActive){
+            return;
+        }
+        
         let { active } = this.state;
         if (!active) {
             this._active();
         } else {
             this.un_active();
         }
-        document.addEventListener('selectionchange', () => {
-            this.isInFocusElements();
-        })
+        // document.addEventListener('selectionchange', () => {
+        //     this.isInFocusElements();
+        //     this.setState({disabled:false});
+        // })
     }
 
     isInFocusElements = () => {
@@ -52,7 +75,9 @@ class BtnCommon extends Component {
     }
 
     handleMouseOver = () => {
-        this.setState({ borderWidth: 1 });
+        if(this.state.disabled===false){
+            this.setState({ borderWidth: 1 });
+        }
         this.time = setTimeout(() => {
             this.setState({ display: '' });
         }, 1200);
@@ -64,11 +89,11 @@ class BtnCommon extends Component {
 
     render() {
         const { icon,styles,tips,elem } = this.props;
-        const { borderWidth, backgroudColor, display } = this.state
+        const { borderWidth, backgroudColor, display,disabled } = this.state
         let left = styles.width===undefined?26:styles.width
         return (
             <div style={{ float: "left" }}>
-                <button style={{
+                <button disabled={disabled} style={{
                     ...styles,
                     borderWidth: borderWidth, borderStyle: "solid",
                     backgroundColor: backgroudColor

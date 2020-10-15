@@ -28,7 +28,7 @@ class Test extends Component {
         return (
             <div>
                 <HowayEditor
-                    onChange={(e)=>{console.log(e)}}
+                    onChange={(e)=>{}}
                     iconBlod={iconBlod}
                     iconItalic={iconItalic}
                     iconUderline={iconUderline}
