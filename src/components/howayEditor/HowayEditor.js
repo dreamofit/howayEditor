@@ -73,6 +73,7 @@ class HowayEditor extends Component {
             let size = "";
             let style = "";
             if ("DIV" !== name) {
+                console.log(node.parentElement);
                 if ("FONT" === name) {
                     if (node.parentElement.face !== "") {
                         face = node.parentElement.face;
@@ -83,9 +84,14 @@ class HowayEditor extends Component {
                     if (node.parentElement.size !== "") {
                         size = node.parentElement.size;
                     }
+                    if(node.parentElement.style.backgroundColor!==""){
+                        console.log(node.parentElement.style.backgroundColor);
+                        style = node.parentElement.style;
+                    }
                 }
-                if("SPAN" === name){
-                    console.log(node.parentElement.style);
+                else if("SPAN" === name){
+                    //console.log(node.parentElement);
+                    style = node.parentElement.style;
                 }
                 let obj = { name: name, face: face,color:color,size:size,style:style };
                 focusElements.push(obj);
