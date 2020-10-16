@@ -24,6 +24,12 @@ class Test extends Component {
     const iconFull = <MenuOutlined />;
     const iconUndo =<UndoOutlined />;
     const iconRedo = <RedoOutlined />;
+    const styles={
+        width: "60%",
+        height: "100%",
+        marginLeft: '20%',
+        float:"none"
+    }
         
         return (
             <div>
@@ -40,6 +46,7 @@ class Test extends Component {
                     iconFull={iconFull}
                     iconUndo={iconUndo}
                     iconRedo={iconRedo}
+                    styles={styles}
                     upload={"http://localhost:8081/img/upload"}
                 />
             </div>
