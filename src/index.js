@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
-import Test from './components/howayEditor/Test';
+import HowayEditor from './components/howayEditor/HowayEditor';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Test />
+    <HowayEditor />
   </React.StrictMode>,
   document.getElementById('root')
 );

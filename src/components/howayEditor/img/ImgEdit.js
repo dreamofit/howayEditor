@@ -60,6 +60,20 @@ class ImgEdit extends Component {
 
     render() {
         const { open, X, Y, styles, radioStyles, inputUrlStyles, id } = this.props;
+        let clientX = document.body.clientWidth / 2;
+        let clientY = document.body.clientHeight / 2;
+        let floatX = 0;
+        let floatY = 0;
+        if (X !== undefined) {
+            if (X > clientX) {
+                floatX = -styles.width;
+            }
+        }
+        if (Y !== undefined) {
+            if (Y > clientY) {
+                floatY = -styles.height;
+            }
+        }
         const { check, src } = this.state;
         let display = open ? "" : "none";
         let custDisplay = 'none';
@@ -67,7 +81,7 @@ class ImgEdit extends Component {
             custDisplay = '';
         }
         return (
-            <div className='img-edit' style={{ ...styles, left: X, top: Y, display: display,zIndex:999 }}>
+            <div className='img-edit' style={{ ...styles, left: X + floatX, top: Y + floatY, display: display, zIndex: 999 }}>
                 <label className='img-edit'>url:
                 <input onChange={e => this.setState({ src: e.target.value })}
                         value={src}
@@ -82,9 +96,9 @@ class ImgEdit extends Component {
                     <div className='img-edit' style={{ float: "right", height: 10 }}>
                         <div className='img-edit' style={{ display: custDisplay }}>
                             <label className='img-edit' style={{ marginLeft: 10 }}>width:</label>
-                            <input className='img-edit'  onChange={e => this.setState({ width: e.target.value })} style={{ width: 40, marginLeft: 4 }} />
+                            <input className='img-edit' onChange={e => this.setState({ width: e.target.value })} style={{ width: 40, marginLeft: 4 }} />
                             <label className='img-edit' style={{ marginLeft: 10 }}>height:</label>
-                            <input className='img-edit'  onChange={e => this.setState({ height: e.target.value })} style={{ width: 40, marginLeft: 4 }} />
+                            <input className='img-edit' onChange={e => this.setState({ height: e.target.value })} style={{ width: 40, marginLeft: 4 }} />
                         </div>
                     </div>
                 </div>

@@ -4,6 +4,35 @@ import BtnColor from '../buttons/BtnColor.js';
 import BtnCommon from '../buttons/BtnCommon.js';
 import BtnImg from '../buttons/BtnImg.js';
 import BtnSelect from '../buttons/BtnSelect.js';
+import blod from '../../../icons/bold.png';
+import italic from '../../../icons/italic.png';
+import underline from '../../../icons/underline.png';
+import strike from '../../../icons/strike.png';
+import aligncenter from '../../../icons/aligncenter.png';
+import alignjustify from '../../../icons/alignjustify.png';
+import alignleft from '../../../icons/alignleft.png';
+import alignright from '../../../icons/alignright.png';
+import clearformat from '../../../icons/clearformat.png';
+import image from '../../../icons/image.png';
+import redo from '../../../icons/redo.png';
+import undo from '../../../icons/undo.png';
+
+const iconBlod = Icon(blod);
+const iconItalic = Icon(italic);
+const iconStriket = Icon(strike);
+const iconUderline = Icon(underline);
+const iconImg = Icon(image);
+const iconCenter = Icon(aligncenter);
+const iconLeft = Icon(alignleft);
+const iconRight = Icon(alignright);
+const iconFull = Icon(alignjustify);
+const iconUndo = Icon(undo);
+const iconRedo = Icon(redo);
+const iconDelete = Icon(clearformat);
+
+function Icon(elem) {
+    return <img src={elem} width={14} />;
+}
 
 class ToolBar extends Component {
     constructor(props) {
@@ -27,19 +56,24 @@ class ToolBar extends Component {
             iconFull,
             iconUndo,
             iconRedo,
+            iconDelete,
             toolBarStyles,
             buttonCommonStyles,
             buttonFontSizeStyles,
             BtnColorStyles,
             btnImgStyles,
             focusElements,
+            buttonCommonActiveBackgroud,
             upload,
-
             focus } = this.props;
+        let commonButtonBackgroud = toolBarStyles.background === undefined ? '#E8EAF6' : toolBarStyles.background;
         return (
             <div style={toolBarStyles}>
+
                 <BtnCommon
                     focus={focus}
+                    backgroud={commonButtonBackgroud}
+                    activeBackgroud={buttonCommonActiveBackgroud}
                     howayMethod={Tool.howayBold}
                     elem={'B'}
                     icon={iconBlod === undefined ? undefined : iconBlod}
@@ -48,6 +82,8 @@ class ToolBar extends Component {
                     focusElements={focusElements} />
                 <BtnCommon
                     focus={focus}
+                    backgroud={commonButtonBackgroud}
+                    activeBackgroud={buttonCommonActiveBackgroud}
                     howayMethod={Tool.howayItalic}
                     icon={iconItalic === undefined ? undefined : iconItalic}
                     elem={'I'}
@@ -56,6 +92,8 @@ class ToolBar extends Component {
                     focusElements={focusElements} />
                 <BtnCommon
                     focus={focus}
+                    backgroud={commonButtonBackgroud}
+                    activeBackgroud={buttonCommonActiveBackgroud}
                     howayMethod={Tool.howayUnderline}
                     icon={iconUderline === undefined ? undefined : iconUderline}
                     elem={'U'}
@@ -64,6 +102,8 @@ class ToolBar extends Component {
                     focusElements={focusElements} />
                 <BtnCommon
                     focus={focus}
+                    backgroud={commonButtonBackgroud}
+                    activeBackgroud={buttonCommonActiveBackgroud}
                     howayMethod={Tool.howayStrikeThrough}
                     icon={iconStriket === undefined ? undefined : iconStriket}
                     elem={'STRIKE'}
@@ -72,6 +112,8 @@ class ToolBar extends Component {
                     focusElements={focusElements} />
                 <BtnCommon
                     focus={focus}
+                    backgroud={commonButtonBackgroud}
+                    activeBackgroud={buttonCommonActiveBackgroud}
                     howayMethod={Tool.howayJustifyCenter}
                     noActive
                     icon={iconCenter === undefined ? undefined : iconCenter}
@@ -81,6 +123,8 @@ class ToolBar extends Component {
                     focusElements={focusElements} />
                 <BtnCommon
                     focus={focus}
+                    backgroud={commonButtonBackgroud}
+                    activeBackgroud={buttonCommonActiveBackgroud}
                     howayMethod={Tool.howayJustifyLeft}
                     noActive
                     icon={iconLeft === undefined ? undefined : iconLeft}
@@ -90,6 +134,8 @@ class ToolBar extends Component {
                     focusElements={focusElements} />
                 <BtnCommon
                     focus={focus}
+                    backgroud={commonButtonBackgroud}
+                    activeBackgroud={buttonCommonActiveBackgroud}
                     howayMethod={Tool.howayJustifyRight}
                     noActive
                     icon={iconRight === undefined ? undefined : iconRight}
@@ -99,6 +145,8 @@ class ToolBar extends Component {
                     focusElements={focusElements} />
                 <BtnCommon
                     focus={focus}
+                    backgroud={commonButtonBackgroud}
+                    activeBackgroud={buttonCommonActiveBackgroud}
                     howayMethod={Tool.howayJustifyFull}
                     noActive
                     icon={iconFull === undefined ? undefined : iconFull}
@@ -106,7 +154,10 @@ class ToolBar extends Component {
                     tips={'两端对齐'}
                     styles={buttonCommonStyles}
                     focusElements={focusElements} />
-
+                <BtnImg tips={"上传图片"}
+                    upload={upload}
+                    icon={iconImg === undefined ? undefined : iconImg}
+                    styles={buttonCommonStyles} />
                 <BtnSelect styles={buttonFontSizeStyles}
                     howayMethod={Tool.howayFormatBlock}
                     focusElements={focusElements}
@@ -141,12 +192,11 @@ class ToolBar extends Component {
                     let src = 'http://5b0988e595225.cdn.sohucs.com/images/20190822/dd8d3f80894d48aebd8ae0a64a285d41.jpeg'
                     document.execCommand('inserthtml', false, `<img src=${src} width=${100} >`)
                 }}>图片</button> */}
-                <BtnImg tips={"上传图片"}
-                    upload={upload}
-                    icon={iconImg === undefined ? undefined : iconImg}
-                    styles={buttonCommonStyles} />
+
                 <BtnCommon
                     focus={focus}
+                    backgroud={commonButtonBackgroud}
+                    activeBackgroud={buttonCommonActiveBackgroud}
                     howayMethod={Tool.howayUndo}
                     icon={iconUndo === undefined ? undefined : iconUndo}
                     elem={'undo'}
@@ -156,11 +206,13 @@ class ToolBar extends Component {
                     focusElements={focusElements} />
                 <BtnCommon
                     focus={focus}
+                    backgroud={commonButtonBackgroud}
+                    activeBackgroud={buttonCommonActiveBackgroud}
                     howayMethod={Tool.howayRedo}
                     icon={iconRedo === undefined ? undefined : iconRedo}
                     elem={'redo'}
                     noActive
-                    tips={'回退(CTRL+Y)'}
+                    tips={'恢复(CTRL+Y)'}
                     styles={buttonCommonStyles}
                     focusElements={focusElements} />
 
@@ -188,6 +240,17 @@ class ToolBar extends Component {
                     elem={'#FFFFFF'}
                     howayMethod={Tool.howayHiliteColor}
                     styles={BtnColorStyles} />
+                <BtnCommon
+                    focus={focus}
+                    backgroud={commonButtonBackgroud}
+                    activeBackgroud={buttonCommonActiveBackgroud}
+                    howayMethod={Tool.howayRemoveFormat}
+                    icon={iconDelete === undefined ? undefined : iconDelete}
+                    elem={'remove'}
+                    noActive
+                    tips={'清除格式'}
+                    styles={buttonCommonStyles}
+                    focusElements={focusElements} />
                 <br />
             </div>
         );
@@ -222,7 +285,19 @@ ToolBar.defaultProps = {
         cursor: "pointer", margin: 2,
         borderColor: '#EA80FC', float: "left",
         borderRadius: 4
-    }
+    },
+    iconBlod: iconBlod,
+    iconItalic: iconItalic,
+    iconStriket,
+    iconUderline,
+    iconImg,
+    iconCenter,
+    iconLeft,
+    iconRight,
+    iconFull,
+    iconUndo,
+    iconRedo,
+    iconDelete,
 }
 
 export default ToolBar;

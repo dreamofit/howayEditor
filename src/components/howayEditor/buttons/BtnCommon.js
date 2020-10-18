@@ -20,13 +20,14 @@ class BtnCommon extends Component {
 
     //btn未激活
     un_active = () => {
-        this.setState({ borderWidth: 0, backgroudColor: '#E8EAF6', active: false });
+        this.setState({ borderWidth: 0, backgroudColor: this.props.backgroud, active: false });
     }
     //btn已激活
     _active = () => {
-        this.setState({ borderWidth: 1, backgroudColor: '#E0E0E0', active: true });
+        this.setState({ borderWidth: 1, backgroudColor: this.props.activeBackgroud, active: true });
     }
     componentDidMount=()=>{
+        this.setState({backgroudColor:this.props.backgroud})
         document.addEventListener('selectionchange', () => {
             this.isInFocusElements();
             this.setState({disabled:false});
@@ -117,6 +118,10 @@ class BtnCommon extends Component {
             </div>
         );
     }
+}
+BtnCommon.defaultProps ={
+    activeBackgroud:'#E0E0E0',
+    backgroudColor:"#E8EAF6"
 }
 
 export default BtnCommon;

@@ -33,13 +33,13 @@ class Editor extends Component {
     }
 
     render() {
-        const { EditorStyles } = this.props;
+        const { EditorStyles,height } = this.props;
         const {open,X,Y} = this.state;
         return (
             <div className="howay-edit"
                 id="howay-editor"
                 onInput={this.handleChange}
-                style={EditorStyles}
+                style={{...EditorStyles,height:height}}
                 onFocus={e => this.setState({ focus: true })}
                 onBlur={e => this.setState({ focus: false })}
                 contentEditable="true">
@@ -50,15 +50,14 @@ class Editor extends Component {
 }
 Editor.defaultProps = {
     EditorStyles: {
-        minHeight: 100,
-        maxHeight: 500,
-        height: 500,
+        minHeight:50,
         overflowY: "scroll",
         padding: 6,
         borderWidth: "0.1px",
         borderStyle: "solid",
         borderColor: 'black'
-    }
+    },
+    height:500
 }
 
 export default Editor;

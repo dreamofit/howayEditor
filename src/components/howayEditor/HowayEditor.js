@@ -73,7 +73,7 @@ class HowayEditor extends Component {
             let size = "";
             let style = "";
             if ("DIV" !== name) {
-                console.log(node.parentElement);
+                //console.log(node.parentElement);
                 if ("FONT" === name) {
                     if (node.parentElement.face !== "") {
                         face = node.parentElement.face;
@@ -85,7 +85,7 @@ class HowayEditor extends Component {
                         size = node.parentElement.size;
                     }
                     if(node.parentElement.style.backgroundColor!==""){
-                        console.log(node.parentElement.style.backgroundColor);
+                        //console.log(node.parentElement.style.backgroundColor);
                         style = node.parentElement.style;
                     }
                 }
@@ -111,7 +111,7 @@ class HowayEditor extends Component {
 
 
     render() {
-        const { styles,upload } = this.props;
+        const { styles,upload,editorHeight } = this.props;
         const { focusElements,open,X,Y } = this.state;
 
         return (
@@ -120,9 +120,10 @@ class HowayEditor extends Component {
                     focus={this.editorRef === undefined ? false : this.editorRef.state.focus} />
                 <Editor 
                     ref={e => this.editorRef = e}
+                    height={editorHeight}
                     onChange={this.handleChange}
                 />
-                <ImgEdit upload={upload} id="img-upload-two" open={open} X={X} Y={Y} />
+                {/* <ImgEdit upload={upload} id="img-upload-two" open={open} X={X} Y={Y} /> */}
             </div>
         );
     }
@@ -134,6 +135,7 @@ HowayEditor.defaultProps = {
         height: "100%",
         marginLeft: '20%',
         float:"none"
-    }
+    },
+    editorHeight:500
 }
 export default HowayEditor;

@@ -14,9 +14,9 @@ class BtnSelect extends Component {
         }, 1200);
     }
     isInFocusElements = () => {
-        const { focusElements, options,elem } = this.props;
+        const { focusElements, options, elem } = this.props;
         let value = "name";
-        if(elem!==undefined){
+        if (elem !== undefined) {
             value = elem;
         }
         for (let i in focusElements) {
@@ -53,21 +53,21 @@ class BtnSelect extends Component {
 
     render() {
         const { selected, display } = this.state;
-        const { styles, tips, options,_key } = this.props;
-        let left =  document.getElementById('select'+_key)===null?0:document.getElementById('select'+_key).offsetWidth;
-       
+        const { styles, tips, options, _key } = this.props;
+        let left = document.getElementById('select' + _key) === null ? 0 : document.getElementById('select' + _key).offsetWidth;
+
         //console.log(_key);
         return (
-            <div id={"select"+_key} style={{ float: "left",width:"auto" }}>
-                <select  style={styles} value={selected}
+            <div id={"select" + _key} style={{ float: "left", width: "auto" }}>
+                <select style={styles} value={selected}
                     onMouseOver={this.handleMouseOver}
                     onMouseOut={this.handleMouseOut}
                     onChange={this.handleChange}>
 
-                    <option value="" disabled>---</option>
+                    <option value="" disabled>--{tips}--</option>
                     {
                         options.map(option => {
-                            return <option key={"select_"+_key+option.value} value={option.value}>{option.title === undefined ? option.value : option.title}</option>
+                            return <option key={"select_" + _key + option.value} value={option.value}>{option.title === undefined ? option.value : option.title}</option>
                         })
                     }
                 </select>

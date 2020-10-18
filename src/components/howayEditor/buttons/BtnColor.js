@@ -59,7 +59,7 @@ class BtnColor extends Component {
                 }
             }
             else if (key === 'style') {
-                console.log(focusElements[i].style);
+                //console.log(focusElements[i].style);
                 if (focusElements[i].style !== undefined && focusElements[i].style !== "") {
                     if (focusElements[i].style.backgroundColor !== "") {
                         this.setState({ value: focusElements[i].style.backgroundColor });
