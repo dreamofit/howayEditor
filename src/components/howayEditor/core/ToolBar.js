@@ -31,20 +31,19 @@ const iconRedo = Icon(redo);
 const iconDelete = Icon(clearformat);
 
 function Icon(elem) {
-    return <img src={elem} width={14} />;
+    return <img alt={elem} src={elem} width={14} />;
 }
 
 class ToolBar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            btnBlodBorder: 0,
+            
         }
     }
 
     render() {
 
-        const { btnBlodBorder } = this.state;
         const { iconStriket,
             iconBlod,
             iconItalic,
@@ -61,7 +60,6 @@ class ToolBar extends Component {
             buttonCommonStyles,
             buttonFontSizeStyles,
             BtnColorStyles,
-            btnImgStyles,
             focusElements,
             buttonCommonActiveBackgroud,
             upload,

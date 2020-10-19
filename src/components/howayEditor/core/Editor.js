@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ImgEdit from '../img/ImgEdit';
 
 class Editor extends Component {
 
@@ -7,22 +6,7 @@ class Editor extends Component {
         super(props);
         this.state = {
             focus: false,
-            open:false,
-            X:0,
-            Y:0
         }
-    }
-
-    componentDidMount = () => {
-        document.addEventListener('selectionchange', (e) => {
-            //console.log(e);
-            
-            if (e.target.tagName === 'IMG') {
-                console.log("yes");
-                this.setState({open:true});
-            }
-        });
-        
     }
 
     handleChange = (e) => {
@@ -34,7 +18,6 @@ class Editor extends Component {
 
     render() {
         const { EditorStyles,height } = this.props;
-        const {open,X,Y} = this.state;
         return (
             <div className="howay-edit"
                 id="howay-editor"

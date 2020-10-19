@@ -61,10 +61,10 @@ class ImgEdit extends Component {
 
     render() {
         const { open, X, Y, styles, radioStyles, inputUrlStyles, id, upload, pagePositionChange } = this.props;
-        let clientX = document.body.clientWidth / 2;
-        let clientY = document.body.clientHeight / 2;
-        let floatX = 0;
-        let floatY = 0;
+        // let clientX = document.body.clientWidth / 2;
+        // let clientY = document.body.clientHeight / 2;
+        // let floatX = 0;
+        // let floatY = 0;
         // if (X !== undefined) {
         //     if (X > clientX) {
         //         floatX = -styles.width;
@@ -117,7 +117,7 @@ class ImgEdit extends Component {
                     </div>
                 </div>
                 <div style={{ margin: 10, width: "100%", height: "auto" }}>
-                    <img src={this.state.src} id="show" height="100" ></img>
+                    <img alt={"show"} src={this.state.src} id="show" height="100" ></img>
                 </div>
                 {upload === undefined ? <div style={{ height: 10, width: 80, marginTop: 20, float: "left" }}></div> :
                     <form className='img-edit' style={{ marginTop: 20, float: "left" }} encType="multipart/form-data">

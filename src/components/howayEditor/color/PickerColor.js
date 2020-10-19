@@ -56,9 +56,6 @@ class PickerColor extends Component {
     render() {
         const { display, pageX, pageY, pagePositionChange } = this.props;
         const { color, values, values2, r, g, b, a } = this.state;
-        if (values === undefined) {
-            values = [];
-        }
         return (
             <div style={{
                 background: "#EEEEEE",
