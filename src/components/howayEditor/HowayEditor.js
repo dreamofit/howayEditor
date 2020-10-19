@@ -55,6 +55,24 @@ class HowayEditor extends Component {
         
     }
 
+    pagePositionChange=(pX,pY)=>{
+        let {X,Y} = this.state;
+        let sp1 = X-pX;
+        let sp2 = Y-pY;
+        if(sp1<0){
+            sp1 = -sp1;
+        }
+        if(sp2<0){
+            sp2 = -sp2;
+        }
+        if(sp1>50||sp2>50){
+            return;
+        }else{
+            this.setState({X:pX,Y:pY});
+        }
+        
+    }
+
     focusChange = (focus) => {
         this.setState({ focus: focus })
     }
@@ -66,6 +84,9 @@ class HowayEditor extends Component {
     forEachparentNode = (node) => {
         let focusElements = [];
         while ("howay-edit" !== node.className) {
+            if(node.parentElement===undefined||node.parentElement===""||node.parentElement===null){
+                return;
+            }
             let name = node.parentElement.nodeName;
             //console.log(node.parentElement.nodeName);
             let face = "";
@@ -108,7 +129,9 @@ class HowayEditor extends Component {
         }
     }
 
-
+    close=()=>{
+        this.setState({open:false});
+    }
 
     render() {
         const { styles,upload,editorHeight } = this.props;
@@ -123,7 +146,7 @@ class HowayEditor extends Component {
                     height={editorHeight}
                     onChange={this.handleChange}
                 />
-                {/* <ImgEdit upload={upload} id="img-upload-two" open={open} X={X} Y={Y} /> */}
+                <ImgEdit upload={upload} pagePositionChange={this.pagePositionChange} close={this.close} id="img-upload-two" open={open} X={X} Y={Y} />
             </div>
         );
     }

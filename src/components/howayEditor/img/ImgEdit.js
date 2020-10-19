@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Drag from '../../drag/Drag';
 import { Tool } from '../../util/Tool';
 
 class ImgEdit extends Component {
@@ -18,7 +19,7 @@ class ImgEdit extends Component {
     upload = (e) => {
         let formData = new FormData();
         console.log(this.props);
-        formData.append('file', e.target.files[0])
+        formData.append('file', e.target.files[0]);
         fetch(this.props.upload, {
             body: formData,
             method: "POST",
@@ -59,21 +60,21 @@ class ImgEdit extends Component {
     }
 
     render() {
-        const { open, X, Y, styles, radioStyles, inputUrlStyles, id } = this.props;
+        const { open, X, Y, styles, radioStyles, inputUrlStyles, id, upload, pagePositionChange } = this.props;
         let clientX = document.body.clientWidth / 2;
         let clientY = document.body.clientHeight / 2;
         let floatX = 0;
         let floatY = 0;
-        if (X !== undefined) {
-            if (X > clientX) {
-                floatX = -styles.width;
-            }
-        }
-        if (Y !== undefined) {
-            if (Y > clientY) {
-                floatY = -styles.height;
-            }
-        }
+        // if (X !== undefined) {
+        //     if (X > clientX) {
+        //         floatX = -styles.width;
+        //     }
+        // }
+        // if (Y !== undefined) {
+        //     if (Y > clientY) {
+        //         floatY = -styles.height;
+        //     }
+        // }
         const { check, src } = this.state;
         let display = open ? "" : "none";
         let custDisplay = 'none';
@@ -81,7 +82,20 @@ class ImgEdit extends Component {
             custDisplay = '';
         }
         return (
-            <div className='img-edit' style={{ ...styles, left: X + floatX, top: Y + floatY, display: display, zIndex: 999 }}>
+            <div className='img-edit' style={{ ...styles, left: X, top: Y, display: display, zIndex: 999 }}>
+                {X===undefined?null:
+                    <Drag pagePositionChange={pagePositionChange}
+                    pageX={X} pageY={Y}
+                    styles={{
+                        width: "100%",
+                        height: 24, cursor: "move",
+                        marginTop: -styles.padding,
+                        marginLeft: styles.padding,
+                        marginBottom: 30
+                    }}
+                    close={this.close} />
+                }
+                
                 <label className='img-edit'>url:
                 <input onChange={e => this.setState({ src: e.target.value })}
                         value={src}
@@ -105,26 +119,30 @@ class ImgEdit extends Component {
                 <div style={{ margin: 10, width: "100%", height: "auto" }}>
                     <img src={this.state.src} id="show" height="100" ></img>
                 </div>
-                <form className='img-edit' style={{ marginTop: 20, float: "left" }} encType="multipart/form-data">
+                {upload === undefined ? <div style={{ height: 10, width: 80, marginTop: 20, float: "left" }}></div> :
+                    <form className='img-edit' style={{ marginTop: 20, float: "left" }} encType="multipart/form-data">
 
-                    <label className='img-edit' htmlFor={id}>
-                        <span style={{
-                            cursor: "pointer",
-                            borderWidth: 1,
-                            borderColor: "#D7CCC8",
-                            borderStyle: "solid",
-                            padding: 8,
-                            borderRadius: 4,
-                            fontSize: 14,
-                            background: "#BDBDBD",
-                            color: "#263238"
-                        }} className='img-edit' >上传本地图片</span>
-                    </label>
+                        <label className='img-edit' htmlFor={id}>
+                            <span style={{
+                                cursor: "pointer",
+                                borderWidth: 1,
+                                borderColor: "#D7CCC8",
+                                borderStyle: "solid",
+                                padding: 8,
+                                borderRadius: 4,
+                                fontSize: 14,
+                                width: 80,
+                                background: "#BDBDBD",
+                                color: "#263238"
+                            }} className='img-edit' >上传本地图片</span>
+                        </label>
 
-                    <input style={{ display: "none" }}
-                        id={id} type='file' accept="image/*"
-                        onChange={this.upload} />
-                </form>
+                        <input style={{ display: "none" }}
+                            id={id} type='file' accept="image/*"
+                            onChange={this.upload} />
+                    </form>
+                }
+
 
                 <button className='img-edit' onClick={this.close}
                     style={{

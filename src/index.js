@@ -5,7 +5,7 @@ import HowayEditor from './components/howayEditor/HowayEditor';
 
 ReactDOM.render(
   <React.StrictMode>
-    <HowayEditor />
+    <HowayEditor upload={"http://localhost:8081/img/upload"} />
   </React.StrictMode>,
   document.getElementById('root')
 );

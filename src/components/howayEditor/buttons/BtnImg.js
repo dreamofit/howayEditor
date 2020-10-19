@@ -67,7 +67,7 @@ class BtnImg extends Component {
                     marginLeft: left,
                     background: '#FFF'
                 }}>{tips}</div>
-                <ImgEdit upload={upload} open={open} close={()=>this.setState({open:false})} />
+                <ImgEdit pagePositionChange={this.pagePositionChange} upload={upload} open={open} close={()=>this.setState({open:false})} />
             </div>
         );
     }

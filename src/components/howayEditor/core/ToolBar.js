@@ -261,7 +261,7 @@ ToolBar.defaultProps = {
     toolBarStyles: {
         background: "#E8EAF6",
         height: "auto",
-        width: "auto",
+        width: "99%",
         padding: 10
     },
     buttonCommonStyles: {

@@ -36,18 +36,18 @@ class Test extends Component {
             <div>
                 <HowayEditor
                     onChange={(e)=>{console.log(e)}}
-                    //iconBlod={iconBlod}
-                    //iconItalic={iconItalic}
-                    //iconUderline={iconUderline}
-                    //iconStriket={iconStriket}
-                    //iconImg={iconImg}
-                    //iconCenter={iconCenter}
-                    //iconLeft={iconLeft}
-                    //iconRight={iconRight}
-                    //iconFull={iconFull}
-                    //iconUndo={iconUndo}
-                    //iconRedo={iconRedo}
-                    //iconDelete={iconDelete}
+                    iconBlod={iconBlod}
+                    iconItalic={iconItalic}
+                    iconUderline={iconUderline}
+                    iconStriket={iconStriket}
+                    iconImg={iconImg}
+                    iconCenter={iconCenter}
+                    iconLeft={iconLeft}
+                    iconRight={iconRight}
+                    iconFull={iconFull}
+                    iconUndo={iconUndo}
+                    iconRedo={iconRedo}
+                    iconDelete={iconDelete}
                     styles={styles}
                     upload={"http://localhost:8081/img/upload"}
                 />

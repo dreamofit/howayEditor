@@ -5,7 +5,7 @@ class BtnColor extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: "#000000",
+            value: this.props.elem,
             display: "none",
             display2: "none",
             pageX: 0,
@@ -18,10 +18,11 @@ class BtnColor extends Component {
             document.addEventListener('selectionchange', () => {
                 this.isInFocusElements();
             })
-        }, 1200);
-        setTimeout(() => {
-            this.setState({ value: this.props.elem });
-        }, 10);
+        }, 2000);
+    }
+
+    pagePositionChange=(X,Y)=>{
+        this.setState({pageX:X,pageY:Y});
     }
 
     displayChange = (e) => {
@@ -110,6 +111,7 @@ class BtnColor extends Component {
                     pageX={pageX}
                     pageY={pageY}
                     display={display}
+                    pagePositionChange={this.pagePositionChange}
                     onChange={this.valueChange} />
                 <div style={{
                     display: display2,

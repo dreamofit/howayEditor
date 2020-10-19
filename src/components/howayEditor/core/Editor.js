@@ -39,7 +39,7 @@ class Editor extends Component {
             <div className="howay-edit"
                 id="howay-editor"
                 onInput={this.handleChange}
-                style={{...EditorStyles,height:height}}
+                style={{...EditorStyles,height:height,width:"100%",float:"none"}}
                 onFocus={e => this.setState({ focus: true })}
                 onBlur={e => this.setState({ focus: false })}
                 contentEditable="true">
